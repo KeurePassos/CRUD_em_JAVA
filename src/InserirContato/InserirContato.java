@@ -1,20 +1,5 @@
 package InserirContato;
 
-import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableModel;
-
-import Contato.Contato;
-import ContatoDao.ContatoDao;
-import ListarContato.ListarContato;
-
 /*
  * Na visualização, existe uma classe responsável por exibir o formulário de inserção de um novo contato.
  * Quando o botão salvar é clicado, todos os dados presentes nas caixas de texto são
@@ -23,6 +8,23 @@ import ListarContato.ListarContato;
  * apenas na base de dados, torna-se necessária a consulta na mesma para o preenchimento
  * deste novo contato na tabela. Deste modo, o método pesquisar criado na classe ListarContato é invocado. * 
  */
+
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.text.MaskFormatter;
+
+import Contato.Contato;
+import ContatoDao.ContatoDao;
+import ListarContato.ListarContato;
 
 public class InserirContato extends JFrame {
 
@@ -46,11 +48,16 @@ public class InserirContato extends JFrame {
 	public void criaJanela() {
 		btSalvar = new JButton("Salvar");
 		btLimpar = new JButton("Limpar");
-		lbNome = new JLabel("         Nome.:   ");
-		lbTelefone = new JLabel("         Telefone.:   ");
-		lbEmail = new JLabel("         Email.:   ");
+		lbNome = new JLabel("         Nome:   ");
+		lbTelefone = new JLabel("         Telefone:   ");
+		lbEmail = new JLabel("         Email:   ");
 		txNome = new JTextField(10);
-		txTelefone = new JTextField();
+		try {
+		    MaskFormatter mascara = new MaskFormatter("(##) #####-####");
+		    txTelefone = new JFormattedTextField(mascara);
+		} catch (Exception e) {
+		    txTelefone = new JTextField();
+		}
 		txEmail = new JTextField();
 		
 		painelFundo = new JPanel();

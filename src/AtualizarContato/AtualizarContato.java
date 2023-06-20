@@ -1,9 +1,9 @@
 package AtualizarContato;
 
-import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -42,8 +42,7 @@ public class AtualizarContato extends JFrame {
 			Contato contato;
 			private int linhaSelecionada;
 			
-			public AtualizarContato(DefaultTableModel md,
-					int id, int linha) {
+			public AtualizarContato(DefaultTableModel md, int id, int linha) {
 						super("Contatos");
 						criaJanela();
 						modelo = md;
@@ -86,10 +85,8 @@ public class AtualizarContato extends JFrame {
 				setSize(300, 150);
 				setVisible(true);
 
-				btSalvar.addActionListener(new
-				AtualizarContato.BtSalvarListener());
-				btLimpar.addActionListener(new
-				AtualizarContato.BtLimparListener());
+				btSalvar.addActionListener(new AtualizarContato.BtSalvarListener());
+				btLimpar.addActionListener(new AtualizarContato.BtLimparListener());
 			}
 			
 			private class BtSalvarListener implements ActionListener {

@@ -61,9 +61,9 @@ public class ContatoDao {
 				pstm = conn.prepareStatement(UPDATE);
 
 				pstm.setString(1, contato.getNome());
-				pstm.setInt(2, contato.getId());
-				pstm.setString(3, contato.getTelefone());
-				pstm.setString(4, contato.getEmail());
+				pstm.setString(2, contato.getTelefone());
+				pstm.setString(3, contato.getEmail());
+				pstm.setInt(4, contato.getId());
 
 				pstm.execute();
 				JOptionPane.showMessageDialog(null, "Contato alterado com sucesso");
