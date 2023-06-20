@@ -1,7 +1,9 @@
 package AtualizarContato.tela;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Frame;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,7 +12,7 @@ import javax.swing.border.EmptyBorder;
 @SuppressWarnings("serial")
 public class tela extends JFrame {
 
-	private JPanel contentPane;
+	private static JPanel contentPane;
 
 	/**
 	 * Launch the application.
@@ -24,6 +26,11 @@ public class tela extends JFrame {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+			}
+
+			private Frame getContentPane() {
+				// TODO Auto-generated method stub
+				return null;
 			}
 		});
 	}

@@ -1,15 +1,22 @@
 package ListarContato;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 import AtualizarContato.AtualizarContato;
 import Contato.Contato;
@@ -69,6 +76,16 @@ public class ListarContato extends JFrame {
 		criaJanela();
 	}
 	
+	private void ordenarPorNome() {
+	    TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(modelo);
+	    tabela.setRowSorter(sorter);
+	    List<RowSorter.SortKey> sortKeys = new ArrayList<>();
+	    sortKeys.add(new RowSorter.SortKey(1, SortOrder.ASCENDING)); // Ordenar pela coluna do nome (índice 1) em ordem crescente
+	    sorter.setSortKeys(sortKeys);
+	    sorter.sort();
+	}
+	
+	
 	public void criaJanela() {
 		btInserir = new JButton("Inserir");
 		btExcluir = new JButton("Excluir");
@@ -93,6 +110,23 @@ public class ListarContato extends JFrame {
 		btEditar.addActionListener(new BtEditarListener());
 		btExcluir.addActionListener(new BtExcluirListener());
 		btOrdemAlfabetica.addActionListener(new BtOrdemAlfabetica());
+		
+		btInserir.setBackground(Color.LIGHT_GRAY);
+        btEditar.setBackground(Color.LIGHT_GRAY);
+        btExcluir.setBackground(Color.LIGHT_GRAY);
+        btOrdemAlfabetica.setBackground(Color.LIGHT_GRAY);
+        
+        btInserir.setText("Inserir ✔");
+        btEditar.setText("Editar \uD83D\uDEE0");
+        btExcluir.setText("Excluir 🗑");
+        btOrdemAlfabetica.setText("A↓Z \uD83D\uDCC2");
+        
+        btOrdemAlfabetica.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                ordenarPorNome();
+            }
+        });
+    
 	}
 	
 	private void criaJTable() {
@@ -166,12 +200,11 @@ public class ListarContato extends JFrame {
 	}
 	
 	private class BtOrdemAlfabetica implements ActionListener {
-		
-		public void actionPerformed(ActionEvent e) {
-						
+		public void actionPerformed(ActionEvent e, Object nome, Object sobrenome) {
 			ContatoDao dao = new ContatoDao();
-			dao.getContatoOrderBy(getName());
-
+	        dao.getContatoOrderBy("nome");
+		}
+		public void actionPerformed(ActionEvent e) {
 		}	
 	}
 	

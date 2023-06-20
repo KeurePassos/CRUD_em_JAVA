@@ -1,10 +1,9 @@
 package AtualizarContato;
 
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -69,7 +68,6 @@ public class AtualizarContato extends JFrame {
 				txEmail = new JTextField();
 				txId = new JTextField();
 				txId.setEditable(false);
-				
 				painelFundo = new JPanel();
 				painelFundo.setLayout(new GridLayout(5, 2, 2, 4));
 				painelFundo.add(lbId);
